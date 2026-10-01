@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Мелкий шрифт">
+  <rect x="2" y="2" width="60" height="60" rx="12" fill="#1f2024"/>
+  <rect x="2.75" y="2.75" width="58.5" height="58.5" rx="11.25" fill="none" stroke="#e8a44c" stroke-width="1.5" opacity="0.55"/>
+  <text x="32" y="45" font-family="Georgia, 'Times New Roman', serif" font-size="40" font-weight="700" text-anchor="middle" fill="#e8a44c">§</text>
+</svg>

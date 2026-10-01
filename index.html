@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Лучшие игры 2026 — по каким условиям и метрикам игру называют сильной</title>
+<meta name="description" content="Разбор условий и правил, по которым читают лучшую игру 2026: RTP и его версии, волатильность и дисперсия, hit frequency, max win, вклад в вейджер, бай-бонус. Почему сильнейший релиз зависит от цели игрока.">
+<link rel="canonical" href="https://luchshie-igry266.github.io/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Лучшие игры 2026 — разбор условий и математики под цель игрока">
+<meta property="og:description" content="По каким параметрам правил и математики читают сильную игру: RTP и его версии, волатильность, hit frequency, max win, вклад в вейджер, бай-бонус. Расчётные примеры, таблицы, схемы.">
+<meta property="og:url" content="https://luchshie-igry266.github.io/">
+<meta property="og:locale" content="ru_RU">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..600&family=Onest:wght@400..700&display=swap">
+<style>
+:root{
+ --paper:#f4f3f0;--surface:#fbfaf7;--surface-2:#e9e7e1;--elevate:#ffffff;
+ --ink:#1f2024;--ink-2:#4a4b50;--ink-3:#6f7074;--line:#dcdad3;--line-2:#b8b5ab;
+ --amber:#a85a0c;--amber-fill:#bc6710;--amber-soft:#f5e6d1;--on-amber:#fff7ec;
+ --good:#2f6f57;--good-soft:#dde9e2;--bad:#9d3b2d;--bad-soft:#f1dfdb;--warn:#846311;--warn-soft:#f0e7cd;
+ --sel:#f5e6d1;--bar-muted:#d9d5cb;
+ --g1:#a85a0c;--g2:#4a4b50;--g3:#2f6f57;--g4:#8a5a9c;
+ --font-head:"Lora","PT Serif",Georgia,serif;--font-body:"Onest","Segoe UI",system-ui,sans-serif;
+ --fs-display:clamp(2rem,1.4rem + 2.7vw,3.05rem);--fs-h2:clamp(1.4rem,1.18rem + 1vw,1.8rem);
+ --fs-h3:1.16rem;--fs-lead:clamp(1.03rem,.97rem + .4vw,1.17rem);--fs-body:1.05rem;
+ --fs-ui:.92rem;--fs-small:.85rem;--fs-micro:.74rem;
+ --gutter:clamp(16px,4vw,26px);--section:clamp(40px,6vw,70px);
+ --wrap:1060px;--wrap-prose:720px;
+ --r1:4px;--r2:8px;--r3:12px;
+ --e1:0 1px 0 rgba(31,32,36,.05),0 1px 2px rgba(31,32,36,.07);
+ --e2:0 2px 8px rgba(31,32,36,.08),0 14px 28px -16px rgba(31,32,36,.22);
+ --ease:cubic-bezier(.22,1,.36,1);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+ --paper:#16171a;--surface:#1d1e22;--surface-2:#26272c;--elevate:#2a2b30;
+ --ink:#e9e7e1;--ink-2:#b4b2ab;--ink-3:#86857f;--line:#2f3035;--line-2:#474851;
+ --amber:#e8a44c;--amber-fill:#d68f36;--amber-soft:#33281a;--on-amber:#19130a;
+ --good:#6fbfa0;--good-soft:#1c3129;--bad:#e2796a;--bad-soft:#38201c;--warn:#d6a542;--warn-soft:#332a16;
+ --sel:#33281a;--bar-muted:#34353b;--g1:#e8a44c;--g2:#b4b2ab;--g3:#6fbfa0;--g4:#bc9ad0;color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+ --paper:#16171a;--surface:#1d1e22;--surface-2:#26272c;--elevate:#2a2b30;
+ --ink:#e9e7e1;--ink-2:#b4b2ab;--ink-3:#86857f;--line:#2f3035;--line-2:#474851;
+ --amber:#e8a44c;--amber-fill:#d68f36;--amber-soft:#33281a;--on-amber:#19130a;
+ --good:#6fbfa0;--good-soft:#1c3129;--bad:#e2796a;--bad-soft:#38201c;--warn:#d6a542;--warn-soft:#332a16;
+ --sel:#33281a;--bar-muted:#34353b;--g1:#e8a44c;--g2:#b4b2ab;--g3:#6fbfa0;--g4:#bc9ad0;color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-body);font-size:var(--fs-body);line-height:1.62;-webkit-font-smoothing:antialiased}
+::selection{background:var(--sel)}
+h1,h2,h3{font-family:var(--font-head);line-height:1.18;font-weight:600;color:var(--ink)}
+a{color:var(--amber);text-underline-offset:3px}
+p{margin:0 0 .9em}
+.msh-skip{position:absolute;left:-999px;top:0;background:var(--amber-fill);color:var(--on-amber);padding:10px 14px;border-radius:var(--r2);z-index:50}
+.msh-skip:focus{left:12px;top:12px}
+.msh-wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
+.msh-prose{max-width:var(--wrap-prose)}
+
+.msh-top{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--paper) 86%,transparent);backdrop-filter:saturate(1.1) blur(0px);border-bottom:1px solid var(--line)}
+.msh-top.is-stuck{box-shadow:var(--e1)}
+.msh-topin{display:flex;align-items:center;gap:18px;height:56px;max-width:var(--wrap);margin:0 auto;padding:0 var(--gutter)}
+.msh-mark{display:flex;align-items:center;gap:9px;font-family:var(--font-head);font-weight:700;font-size:1.02rem;white-space:nowrap}
+.msh-sigil{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:7px;background:var(--ink);color:var(--amber);font-family:Georgia,serif;font-weight:700;font-size:19px}
+.msh-nav{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;margin-left:auto;-webkit-mask-image:linear-gradient(90deg,transparent,#000 14px,#000 94%,transparent)}
+.msh-nav::-webkit-scrollbar{display:none}
+.msh-nav a{color:var(--ink-2);text-decoration:none;font-size:var(--fs-ui);padding:7px 10px;border-radius:var(--r1);white-space:nowrap}
+.msh-nav a:hover{color:var(--ink);background:var(--surface-2)}
+.msh-nav a.is-here{color:var(--amber);background:var(--amber-soft)}
+.msh-theme{border:1px solid var(--line-2);background:var(--surface);color:var(--ink-2);border-radius:var(--r1);padding:6px 9px;font:inherit;font-size:var(--fs-small);cursor:pointer}
+
+.msh-hero{padding:calc(var(--section) * .7) 0 var(--section)}
+.msh-dateline{font-size:var(--fs-small);color:var(--ink-3);letter-spacing:.01em;margin-bottom:14px}
+.msh-hero h1{font-size:var(--fs-display);margin:0 0 .5em;max-width:16ch}
+.msh-lead{font-size:var(--fs-lead);color:var(--ink-2);max-width:60ch}
+.msh-herogrid{display:grid;grid-template-columns:1.35fr .9fr;gap:clamp(22px,4vw,46px);align-items:start}
+@media(max-width:820px){.msh-herogrid{grid-template-columns:1fr}}
+
+.msh-pick{background:var(--surface);border:1px solid var(--line);border-radius:var(--r3);padding:20px;box-shadow:var(--e2)}
+.msh-pickhead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.msh-tag{font-size:var(--fs-micro);text-transform:none;letter-spacing:.02em;color:var(--amber);border:1px solid var(--amber);border-radius:var(--r1);padding:3px 7px;font-weight:600}
+.msh-sample{font-size:var(--fs-micro);color:var(--ink-3);border:1px dashed var(--line-2);border-radius:var(--r1);padding:3px 7px}
+.msh-pick h2{font-size:1.18rem;margin:.1em 0 .5em}
+.msh-dl{display:grid;grid-template-columns:auto 1fr;gap:7px 14px;margin:14px 0 0;font-size:var(--fs-ui)}
+.msh-dl dt{color:var(--ink-3)}
+.msh-dl dd{margin:0;text-align:right;font-variant-numeric:tabular-nums;font-weight:500}
+
+.msh-sec{padding:var(--section) 0;border-top:1px solid var(--line)}
+.msh-kicker{font-size:var(--fs-small);color:var(--amber);font-weight:600;margin-bottom:6px}
+.msh-sec h2{font-size:var(--fs-h2);margin:0 0 .55em;max-width:30ch}
+.msh-sec h3{font-size:var(--fs-h3);margin:1.5em 0 .5em}
+.msh-cap{max-width:var(--wrap-prose)}
+.msh-idx{font-family:var(--font-head);font-weight:700;color:var(--amber);font-size:.95rem;margin-right:.4em}
+
+.msh-viz{margin:26px 0;background:var(--surface);border:1px solid var(--line);border-radius:var(--r3);padding:18px}
+.msh-viz svg{display:block;width:100%;height:auto}
+.msh-figcap{font-size:var(--fs-small);color:var(--ink-3);margin-top:10px}
+.msh-tw{margin-top:14px;overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:var(--fs-ui)}
+caption{text-align:left;font-size:var(--fs-small);color:var(--ink-3);margin-bottom:8px}
+th,td{padding:8px 11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+thead th{color:var(--ink-3);font-weight:600;font-size:var(--fs-small);border-bottom:1px solid var(--line-2)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+tbody tr:hover{background:var(--surface-2)}
+
+.msh-note{background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:var(--r2);padding:13px 16px;margin:20px 0;font-size:var(--fs-ui);color:var(--ink-2)}
+.msh-flags{list-style:none;padding:0;margin:16px 0}
+.msh-flags li{padding:8px 0 8px 26px;position:relative;border-bottom:1px dashed var(--line)}
+.msh-flags li::before{content:"✕";position:absolute;left:0;top:7px;color:var(--bad);font-weight:700}
+
+.msh-det{border:1px solid var(--line);border-radius:var(--r2);margin:10px 0;background:var(--surface);overflow:hidden}
+.msh-det summary{cursor:pointer;padding:13px 16px;font-weight:600;font-family:var(--font-head);list-style:none;display:flex;justify-content:space-between;gap:12px}
+.msh-det summary::-webkit-details-marker{display:none}
+.msh-det summary::after{content:"+";color:var(--amber);font-weight:700;font-size:1.2em}
+.msh-det[open] summary::after{content:"–"}
+.msh-body{padding:0 16px 14px;color:var(--ink-2);font-size:var(--fs-ui)}
+
+.msh-channel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r3);padding:24px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center}
+@media(max-width:640px){.msh-channel{grid-template-columns:1fr}}
+.msh-cta{display:inline-flex;align-items:center;gap:9px;background:var(--amber-fill);color:var(--on-amber);text-decoration:none;font-weight:600;padding:12px 20px;border-radius:var(--r2);white-space:nowrap}
+.msh-cta:hover{filter:brightness(1.05)}
+
+.msh-foot{border-top:1px solid var(--line);padding:var(--section) 0 48px;color:var(--ink-3);font-size:var(--fs-ui)}
+.msh-footgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:26px}
+@media(max-width:640px){.msh-footgrid{grid-template-columns:1fr}}
+.msh-foot h4{font-family:var(--font-head);color:var(--ink-2);margin:0 0 10px;font-size:1rem}
+.msh-foot a{color:var(--ink-2)}
+.msh-care{font-size:var(--fs-small);color:var(--ink-3);margin-top:22px}
+
+@media(prefers-reduced-motion:reduce){*{transition-duration:1ms!important}}
+</style>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","@id":"https://luchshie-igry266.github.io/#page","headline":"Лучшие игры 2026: разбор правил и математики под вашу цель","description":"Разбор условий и правил, по которым читают лучшую игру 2026: RTP и его версии, волатильность и дисперсия, hit frequency, max win, вклад в вейджер, бай-бонус. Почему сильнейший релиз зависит от цели игрока.","inLanguage":"ru","datePublished":"2026-10-01","dateModified":"2026-10-01","author":{"@type":"Organization","name":"Редакция «Между строк»"},"publisher":{"@type":"Organization","name":"Между строк"},"mainEntityOfPage":"https://luchshie-igry266.github.io/"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","@id":"https://luchshie-igry266.github.io/#faq","mainEntity":[
+{"@type":"Question","name":"Что значит, что RTP у одной игры бывает разным?","acceptedAnswer":{"@type":"Answer","text":"Многие студии выпускают релиз в нескольких версиях отдачи — например 96,5 %, 95,5 % и 94,0 %, — а какую включить, решает оператор при подключении. Фактическую версию указывают в правилах или в информационном окне самого автомата, и именно её, а не рекламное число, стоит проверять перед ставкой."}},
+{"@type":"Question","name":"Высокий RTP делает игру сильнейшей?","acceptedAnswer":{"@type":"Answer","text":"RTP описывает долю ставок, возвращаемую в среднем на дистанции в миллионы спинов, и ничего не говорит про один вечер. При одинаковом RTP волатильность и частота попаданий дают совершенно разный разброс результата, поэтому подходящий под конкретную цель релиз определяет связка метрик, а не один процент."}},
+{"@type":"Question","name":"Почему для отыгрыша бонуса слот выгоднее блэкджека?","acceptedAnswer":{"@type":"Answer","text":"Правило вклада засчитывает ставки в слотах в счёт вейджера обычно на 100 %, а в настольных форматах — на 5–10 % или на ноль. При вейджере ×35 бонус в 3000 ₽ закрывается оборотом 105 000 ₽ в слотах и более чем 2 000 000 ₽ в блэкджеке, поэтому формально более честная по отдаче настолка оказывается для отыгрыша проигрышным выбором."}},
+{"@type":"Question","name":"Что такое max win и когда он мешает?","acceptedAnswer":{"@type":"Answer","text":"Max win — это потолок выплаты за один раунд или сессию, записанный в правилах игры, чаще в кратных ставке: от нескольких сотен до десятков тысяч. Для спокойной игры он почти не важен, но при охоте за крупным заносом редкий максимальный результат упирается в этот лимит, и всё сверху не выплачивается."}},
+{"@type":"Question","name":"Бай-бонус повышает отдачу?","acceptedAnswer":{"@type":"Answer","text":"Покупка входа в бонус обычно идёт со своей версией RTP, которая бывает и выше, и ниже базовой на доли процента, и резко повышает дисперсию: вы платите 70–100 ставок сразу ради одного раунда. На отыгрыше бонусных средств функцию часто запрещают правилами, поэтому её влияние на отдачу зависит и от математики кнопки, и от условий конкретной акции."}},
+{"@type":"Question","name":"Можно ли проверить метрики игры заранее?","acceptedAnswer":{"@type":"Answer","text":"Базовый RTP, диапазон ставок и max win указывают в информационном окне автомата и в его правилах; версию отдачи и наличие бай-бонуса — там же. Демо-режим показывает механику без денег, а сертификат независимой лаборатории вроде GLI, eCOGRA или iTech Labs подтверждает, что генератор случайных чисел проверен, хотя саму версию RTP он не раскрывает."}}
+]}
+</script>
+</head>
+<body>
+<a class="msh-skip" href="#r-start">К разбору</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="msh-m" viewBox="0 0 40 40"><rect width="40" height="40" rx="9" fill="var(--ink)"/><text x="20" y="29" font-family="Georgia,serif" font-size="25" font-weight="700" text-anchor="middle" fill="var(--amber)">§</text></symbol></svg>
+
+<header class="msh-top" id="top">
+ <div class="msh-topin">
+  <span class="msh-mark"><span class="msh-sigil">§</span>Между строк</span>
+  <nav class="msh-nav" aria-label="Разделы разбора">
+   <a href="#r-start">Цель</a>
+   <a href="#r-rtp">RTP</a>
+   <a href="#r-vol">Волатильность</a>
+   <a href="#r-hit">Попадания</a>
+   <a href="#r-maxwin">Max win</a>
+   <a href="#r-wager">Вейджер</a>
+   <a href="#r-buy">Бай-бонус</a>
+   <a href="#r-mech">Механика</a>
+   <a href="#r-flip">Смена цели</a>
+   <a href="#r-faq">Вопросы</a>
+  </nav>
+  <button class="msh-theme" type="button" id="themebtn" aria-label="Переключить тему">Тема</button>
+ </div>
+</header>
+
+<main>
+<section class="msh-hero">
+ <div class="msh-wrap msh-herogrid">
+  <div>
+   <p class="msh-dateline">Обновлено 1 октября 2026 · разбор условий, без рейтинга брендов</p>
+   <h1>Лучшие игры 2026: разбор правил и математики под вашу цель</h1>
+   <p class="msh-lead">Слово «сильнейшая» в списках ничего не значит, пока не названа цель: растянуть небольшой банк на вечер, поймать редкий крупный занос, закрыть вейджер бонуса или сыграть пару заходов ради эмоций. Ниже — по пунктам, по каким условиям и метрикам игру читают как подходящую, и почему один и тот же релиз меняет оценку вместе с целью.</p>
+  </div>
+  <aside class="msh-pick">
+   <div class="msh-pickhead">
+    <span class="msh-tag">С чего читать</span>
+    <span class="msh-sample">расчётный пример</span>
+   </div>
+   <h2>Профиль «А»: как условия складываются в карточку</h2>
+   <p style="font-size:var(--fs-ui);color:var(--ink-2);margin:0">Это не реальный тайтл, а набор параметров для расчёта. По ним на странице показано, как одни и те же числа читаются по-разному под четыре цели.</p>
+   <dl class="msh-dl">
+    <dt>Базовый RTP</dt><dd>96,2 %</dd>
+    <dt>Версия оператора</dt><dd>94,5 %</dd>
+    <dt>Волатильность</dt><dd>высокая</dd>
+    <dt>Частота попаданий</dt><dd>24 %</dd>
+    <dt>Max win</dt><dd>×5000</dd>
+    <dt>Вклад в вейджер</dt><dd>100 %</dd>
+    <dt>Бай-бонус</dt><dd>есть, ×80</dd>
+   </dl>
+  </aside>
+ </div>
+</section>
+
+<section class="msh-sec" id="r-start">
+ <div class="msh-wrap msh-cap">
+  <p class="msh-kicker">Шаг 0 · рамка разбора</p>
+  <h2>С чего начать: четыре цели за вечер и какой параметр решает</h2>
+  <p>Разбор условий начинается не с метрики, а с вопроса, зачем вы садитесь за автомат. Четыре типичные цели требуют разного чтения одной и той же карточки. Для долгой сессии на небольшом банке важнее всего отдача и частота попаданий — деньги должны возвращаться мелкими порциями, чтобы вращений хватало надолго. Для охоты за крупным заносом главными становятся волатильность и потолок выплаты, а частота попаданий отходит на второй план. Для отыгрыша бонуса решает правило вклада и запреты на функции, а не теоретический процент. Для короткой сессии ради эмоций чаще берут частые мелкие срабатывания и живую механику, и тогда числа вообще уходят на третий план.</p>
+  <p>Ошибка большинства подборок в том, что они выдают один список «на все случаи», будто цель у всех одна. На деле параметр, который делает релиз сильным под одну задачу, под другую превращается в недостаток. Высокая дисперсия, нужная охотнику за заносом, съедает банк того, кто хотел спокойный вечер. Стопроцентный вклад слота в вейджер бесполезен тому, кто не берёт бонус. Ниже каждая метрика разобрана как условие с его собственными правилами чтения, а в конце показано, как одна карточка переворачивается под четыре задачи.</p>
+  <figure class="msh-viz">
+   <svg viewBox="0 0 760 326" role="img" aria-labelledby="gridt gridd">
+    <title id="gridt">Вес параметров под четыре цели игрока</title>
+    <desc id="gridd">Сетка: строки — цели, столбцы — метрики; насыщенность клетки показывает вес параметра для цели по шкале от 1 до 3.</desc>
+    <g font-family="Onest,sans-serif" font-size="12" fill="var(--ink-2)">
+     <text x="186" y="40" text-anchor="middle">RTP</text>
+     <text x="278" y="40" text-anchor="middle">Волат.</text>
+     <text x="370" y="34" text-anchor="middle">Частота</text><text x="370" y="48" text-anchor="middle">попад.</text>
+     <text x="462" y="40" text-anchor="middle">Max win</text>
+     <text x="554" y="34" text-anchor="middle">Вклад</text><text x="554" y="48" text-anchor="middle">вейдж.</text>
+     <text x="646" y="34" text-anchor="middle">Бай-</text><text x="646" y="48" text-anchor="middle">бонус</text>
+    </g>
+    <g font-family="Onest,sans-serif" font-size="12.5" fill="var(--ink)">
+     <text x="16" y="94">Долгая сессия, малый банк</text>
+     <text x="16" y="152">Охота за крупным заносом</text>
+     <text x="16" y="210">Отыгрыш бонуса</text>
+     <text x="16" y="268">Короткая сессия, эмоции</text>
+    </g>
+    <!-- weights drawn as amber cells; opacity by weight -->
+    <g>
+     <!-- row1 y=70 -->
+     <rect x="140" y="70" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.85"/><rect x="232" y="70" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.85"/><rect x="324" y="70" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.85"/><rect x="416" y="70" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.2"/><rect x="508" y="70" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.2"/><rect x="600" y="70" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.2"/>
+     <!-- row2 y=128 -->
+     <rect x="140" y="128" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.5"/><rect x="232" y="128" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.85"/><rect x="324" y="128" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.2"/><rect x="416" y="128" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.85"/><rect x="508" y="128" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.2"/><rect x="600" y="128" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.85"/>
+     <!-- row3 y=186 -->
+     <rect x="140" y="186" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.5"/><rect x="232" y="186" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.5"/><rect x="324" y="186" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.5"/><rect x="416" y="186" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.2"/><rect x="508" y="186" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.85"/><rect x="600" y="186" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.2"/>
+     <!-- row4 y=244 -->
+     <rect x="140" y="244" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.2"/><rect x="232" y="244" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.5"/><rect x="324" y="244" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.85"/><rect x="416" y="244" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.5"/><rect x="508" y="244" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.2"/><rect x="600" y="244" width="92" height="46" rx="4" fill="var(--amber)" opacity="0.5"/>
+    </g>
+    <g font-family="Onest,sans-serif" font-size="12" font-weight="600" fill="var(--on-amber)" text-anchor="middle">
+     <text x="186" y="99">3</text><text x="278" y="99">3</text><text x="370" y="99">3</text><text x="462" y="99" fill="var(--ink-3)">1</text><text x="554" y="99" fill="var(--ink-3)">1</text><text x="646" y="99" fill="var(--ink-3)">1</text>
+     <text x="186" y="157" fill="var(--ink)">2</text><text x="278" y="157">3</text><text x="370" y="157" fill="var(--ink-3)">1</text><text x="462" y="157">3</text><text x="554" y="157" fill="var(--ink-3)">1</text><text x="646" y="157">3</text>
+     <text x="186" y="215" fill="var(--ink)">2</text><text x="278" y="215" fill="var(--ink)">2</text><text x="370" y="215" fill="var(--ink)">2</text><text x="462" y="215" fill="var(--ink-3)">1</text><text x="554" y="215">3</text><text x="646" y="215" fill="var(--ink-3)">1</text>
+     <text x="186" y="273" fill="var(--ink-3)">1</text><text x="278" y="273" fill="var(--ink)">2</text><text x="370" y="273">3</text><text x="462" y="273" fill="var(--ink)">2</text><text x="554" y="273" fill="var(--ink-3)">1</text><text x="646" y="273" fill="var(--ink)">2</text>
+    </g>
+    <g font-family="Onest,sans-serif" font-size="11.5" fill="var(--ink-3)"><text x="140" y="314">Вес: 1 — почти не важно · 2 — заметно · 3 — решает</text></g>
+   </svg>
+   <figcaption class="msh-figcap">Расчётный пример: условная карта весов, а не измерение конкретных тайтлов. Те же значения — в таблице ниже.</figcaption>
+   <div class="msh-tw">
+    <table>
+     <caption>Вес параметра для цели (1 — почти не важно, 3 — решает)</caption>
+     <thead><tr><th>Цель</th><th class="num">RTP</th><th class="num">Волат.</th><th class="num">Частота</th><th class="num">Max win</th><th class="num">Вклад</th><th class="num">Бай-бонус</th></tr></thead>
+     <tbody>
+      <tr><td>Долгая сессия, малый банк</td><td class="num">3</td><td class="num">3</td><td class="num">3</td><td class="num">1</td><td class="num">1</td><td class="num">1</td></tr>
+      <tr><td>Охота за крупным заносом</td><td class="num">2</td><td class="num">3</td><td class="num">1</td><td class="num">3</td><td class="num">1</td><td class="num">3</td></tr>
+      <tr><td>Отыгрыш бонуса</td><td class="num">2</td><td class="num">2</td><td class="num">2</td><td class="num">1</td><td class="num">3</td><td class="num">1</td></tr>
+      <tr><td>Короткая сессия, эмоции</td><td class="num">1</td><td class="num">2</td><td class="num">3</td><td class="num">2</td><td class="num">1</td><td class="num">2</td></tr>
+     </tbody>
+    </table>
+   </div>
+  </figure>
+ </div>
+</section>
+
+<section class="msh-sec" id="r-rtp">
+ <div class="msh-wrap msh-cap">
+  <p class="msh-kicker"><span class="msh-idx">01</span>отдача</p>
+  <h2>RTP как настройка, а не свойство: кто выбирает версию отдачи</h2>
+  <p>Return to Player — доля всех ставок, которую автомат возвращает участникам в среднем на огромной дистанции. Число 96,2 % означает, что при обороте в миллионы спинов на каждые поставленные 100 ₽ в оборот возвращается около 96,2 ₽, а 3,8 ₽ остаётся как преимущество заведения (house edge). Ключевое слово — «в среднем на дистанции»: за один вечер фактический возврат может оказаться и 20 %, и 300 %, и RTP ничего об этом не обещает.</p>
+  <p>Чего почти не пишут в подборках: у одного релиза бывает несколько версий отдачи. Студия закладывает в математику набор конфигураций — например 96,5 %, 95,5 % и 94,0 %, иногда до шести ступеней, — а какую включить, решает оператор при подключении контента. Из-за этого «тот же автомат» на двух площадках отдаёт по-разному, и рекламный процент из обзора не равен тому, что стоит у вас на счёте. Проверяется это в информационном окне самого релиза (значок с правилами) или в разделе Game Rules: там указана именно активная версия.</p>
+  <p>Для разбора под цель RTP важнее всего долгой сессии: разница в полтора-два процента на дистанции в десятки тысяч ставок заметно растягивает или укорачивает банк. Для короткого захода ради эмоций это почти не чувствуется — дисперсия перекроет любую разницу в версии. Отдельно стоит помнить про режим live и настольные форматы: у блэкджека и рулетки «отдачу» описывают через house edge и зависящую от правил стратегию, а не через фиксированный RTP автомата, и сравнивать их с барабанами по одному числу некорректно.</p>
+  <div class="msh-note">RTP — это не гарантия и не «процент за сессию», а параметр конфигурации. Сильной под отдачу считается не тот релиз с самым громким числом в рекламе, а та, у которой активная версия на вашей площадке высокая и подтверждена в правилах.</div>
+  <details class="msh-det"><summary>Что значит, что RTP у одной игры бывает разным?</summary><div class="msh-body">Многие студии выпускают релиз в нескольких версиях отдачи — например 96,5 %, 95,5 % и 94,0 %, — а какую включить, решает оператор при подключении. Фактическую версию указывают в правилах или в информационном окне самого автомата, и именно её, а не рекламное число, стоит проверять перед ставкой.</div></details>
+ </div>
+</section>
+
+<section class="msh-sec" id="r-vol">
+ <div class="msh-wrap msh-cap">
+  <p class="msh-kicker"><span class="msh-idx">02</span>риск</p>
+  <h2>Волатильность и дисперсия: цена длины сессии на одном банкролле</h2>
+  <p>Волатильность описывает, насколько результат отклоняется от среднего. При одинаковом RTP низковолатильный автомат отдаёт часто и понемногу, высоковолатильный — редко и помногу. Формально это дисперсия распределения выплат и её корень, стандартное отклонение: чем он больше, тем шире разброс исходов вокруг теоретической отдачи и тем дольше приходится играть, чтобы фактический результат приблизился к RTP.</p>
+  <p>Практический смысл волатильности — это цена, которую вы платите банкроллом за доступ к крупным выплатам. На высокой дисперсии возможны длинные серии без заметных срабатываний, поэтому запас средств должен быть кратно больше ставки: типичная рекомендация — держать банк в сотни ставок, а не в десятки. На низкой дисперсии банк тает медленнее и предсказуемее, но и потолок радости ниже. Студии обычно маркируют уровень словами low / medium / high или шкалой на 1–5 звёзд в описании релиза.</p>
+  <p>Под цель это читается прямо. Для долгого вечера на небольшом банке высокая волатильность — враг: пара пустых серий, и играть больше не на что. Для охоты за заносом она, наоборот, необходима — только широкий разброс даёт шанс на верхние исходы. Для отыгрыша бонуса умеренная дисперсия удобнее крайностей: она снижает риск обнулить бонусные средства до выполнения вейджера. Расчётный ориентир: при ставке 20 ₽ и банке 4000 ₽ (200 ставок) низковолатильный релиз чаще даёт сыграть весь вечер, а высоковолатильный тот же банк способен исчерпать за несколько минут неудачной серии.</p>
+  <div class="msh-note">Волатильность не меняет средний возврат — она меняет форму пути к нему. Два автомата с RTP 96 % дают один и тот же результат только на бесконечности; на вашей сессии разброс решает всё.</div>
+  <details class="msh-det"><summary>Высокий RTP делает игру сильнейшей?</summary><div class="msh-body">RTP описывает долю ставок, возвращаемую в среднем на дистанции в миллионы спинов, и ничего не говорит про один вечер. При одинаковом RTP волатильность и частота попаданий дают совершенно разный разброс результата, поэтому подходящий под конкретную цель релиз определяет связка метрик, а не один процент.</div></details>
+ </div>
+</section>
+
+<section class="msh-sec" id="r-hit">
+ <div class="msh-wrap msh-cap">
+  <p class="msh-kicker"><span class="msh-idx">03</span>частота</p>
+  <h2>Частота попаданий и мёртвые спины: сколько вращений без выплаты заложено правилами</h2>
+  <p>Hit frequency — доля вращений, которые приносят хоть какую-то выплату. Если частота попаданий 24 %, то примерно каждый четвёртый спин что-то возвращает, а три из четырёх уходят в ноль. Эту метрику часто путают с волатильностью, но она про другое: про то, как часто экран оживает, а не про то, насколько крупной бывает выплата. Бывает высокая частота с мелкими выплатами ниже ставки (технически попадание, а по кошельку — минус) и низкая частота с редкими, но весомыми срабатываниями.</p>
+  <p>Отдельно читается «ощущение сессии». Низкая частота попаданий означает длинные мёртвые серии, которые психологически тяжело выдерживать: кажется, что автомат «не платит», хотя статистически всё в пределах нормы. Высокая частота держит вовлечённость, но часть этих попаданий — возвраты меньше ставки, которые создают иллюзию выплат. Саму по себе частоту нельзя читать без размера типичной выплаты и без волатильности: три метрики работают только в связке.</p>
+  <p>Под цель частота попаданий решает две задачи. Для короткой сессии ради эмоций она первична: нужен живой экран и регулярная обратная связь, а не редкий шанс на верхний исход. Для долгого вечера на малом банке она важна как способ не слить всё в первой же серии — частые мелкие возвраты продлевают сессию. Для охоты за заносом частота почти не важна: охотник сознательно терпит длинные пустые серии ради верхних выплат. Расчётный пример: при частоте 24 % вероятность десяти пустых спинов подряд около 6,4 %, то есть такая серия встречается регулярно и это норма, а не сбой.</p>
+  <details class="msh-det"><summary>Можно ли проверить метрики игры заранее?</summary><div class="msh-body">Базовый RTP, диапазон ставок и max win указывают в информационном окне автомата и в его правилах; версию отдачи и наличие бай-бонуса — там же. Демо-режим показывает механику без денег, а сертификат независимой лаборатории вроде GLI, eCOGRA или iTech Labs подтверждает, что генератор случайных чисел проверен, хотя саму версию RTP он не раскрывает.</div></details>
+ </div>
+</section>
+
+<section class="msh-sec" id="r-maxwin">
+ <div class="msh-wrap msh-cap">
+  <p class="msh-kicker"><span class="msh-idx">04</span>потолок</p>
+  <h2>Max win как потолок в договоре: когда редкий занос упирается в лимит</h2>
+  <p>Max win — максимальная выплата, которую релиз может выдать за один раунд или сессию. Его указывают в кратных ставке: ×500 у спокойных автоматов, ×5000 и ×10 000 у среднего сегмента, десятки тысяч ставок у самых дисперсных. Это не статистическая метрика вроде RTP, а правило выплаты: верхняя граница, прописанная в математике и в условиях. Как только раунд набирает сумму до потолка, игра принудительно останавливает начисление, и всё, что могло бы выпасть сверх лимита, не выплачивается.</p>
+  <p>Важно отделять max win автомата от лимита на вывод у площадки — это два разных потолка. Первый заложен в самом релизе и одинаков везде. Второй — условие заведения на максимальную сумму вывода за операцию или период, и он способен растянуть получение крупной выплаты на части. Оба вместе определяют, сколько вы реально унесёте с верхнего исхода, поэтому разбор потолка всегда идёт в паре с правилами вывода.</p>
+  <p>Под цель max win важен ровно одной группе. Для охоты за крупным заносом это главный параметр после волатильности: нет смысла терпеть высокую дисперсию, если потолок обрезает тот самый редкий исход, ради которого всё затевалось. Для долгой спокойной сессии и для отыгрыша бонуса max win почти не играет роли — до него в этих сценариях попросту не доходит. Расчётный пример: при ставке 50 ₽ и потолке ×5000 максимум раунда — 250 000 ₽, и если математика теоретически способна выдать больше, разница сгорает на лимите.</p>
+  <h3>Что обрезает верхний исход</h3>
+  <ul class="msh-flags">
+   <li>Низкий max win при высокой волатильности — дисперсию терпите, а верх обрезан.</li>
+   <li>Лимит вывода площадки ниже возможной выплаты — выплата частями неделями.</li>
+   <li>Max cashout по бонусу — выплата с бонусных средств срезается до фиксированной суммы.</li>
+  </ul>
+  <details class="msh-det"><summary>Что такое max win и когда он мешает?</summary><div class="msh-body">Max win — это потолок выплаты за один раунд или сессию, записанный в правилах игры, чаще в кратных ставке: от нескольких сотен до десятков тысяч. Для спокойной игры он почти не важен, но при охоте за крупным заносом редкий максимальный результат упирается в этот лимит, и всё сверху не выплачивается.</div></details>
+ </div>
+</section>
+
+<section class="msh-sec" id="r-wager">
+ <div class="msh-wrap msh-cap">
+  <p class="msh-kicker"><span class="msh-idx">05</span>условие бонуса</p>
+  <h2>Вклад в отыгрыш: почему правило вейджера делает сильную игру худшей для бонуса</h2>
+  <p>Вклад в вейджер — правило акции, которое определяет, какая доля вашей ставки засчитывается в счёт отыгрыша бонуса. У слотов это обычно 100 %: поставили 100 ₽ — 100 ₽ ушло в оборот вейджера. У live-форматов, рулетки и видеопокера вклад урезан до 10 % или 5 %, а у блэкджека и части настольных игр бывает и ноль. Правило прописано в условиях бонуса, и именно оно, а не отдача, решает, какой формат выгоден для отыгрыша.</p>
+  <p>Отсюда парадокс, который ломает наивную логику «бери что отдаёт больше». Блэкджек с его низким преимуществом заведения математически возвращает участнику больше слота — но при вкладе 5 % он требует в двадцать раз большего оборота, чтобы закрыть тот же вейджер. Формально более честный по отдаче формат оказывается для отыгрыша невыгодным: вы прогоняете через него гигантскую сумму и подставляете её под преимущество заведения куда дольше. Для бонуса сильным считается именно слот со стопроцентным вкладом и управляемой дисперсией, а не самый «отдающий» тайтл.</p>
+  <figure class="msh-viz">
+   <svg viewBox="0 0 760 300" role="img" aria-labelledby="wagt wagd">
+    <title id="wagt">Вклад форматов в отыгрыш вейджера</title>
+    <desc id="wagd">Горизонтальные полосы: доля ставки, засчитываемая в счёт вейджера, по типам игр.</desc>
+    <g font-family="Onest,sans-serif" font-size="13" fill="var(--ink)">
+     <text x="16" y="48">Слоты</text>
+     <text x="16" y="96">Live-игры</text>
+     <text x="16" y="144">Рулетка</text>
+     <text x="16" y="192">Видеопокер</text>
+     <text x="16" y="240">Блэкджек</text>
+     <text x="16" y="284">Настольные</text>
+    </g>
+    <g>
+     <rect x="170" y="34" width="560" height="20" rx="4" fill="var(--amber)"/><rect x="170" y="82" width="56" height="20" rx="4" fill="var(--amber)" opacity="0.6"/><rect x="170" y="130" width="56" height="20" rx="4" fill="var(--amber)" opacity="0.6"/><rect x="170" y="178" width="56" height="20" rx="4" fill="var(--amber)" opacity="0.6"/><rect x="170" y="226" width="28" height="20" rx="4" fill="var(--amber)" opacity="0.45"/><rect x="170" y="270" width="4" height="20" rx="2" fill="var(--bar-muted)"/>
+    </g>
+    <g font-family="Onest,sans-serif" font-size="12.5" font-weight="600" fill="var(--ink-2)">
+     <text x="738" y="48" text-anchor="end" fill="var(--on-amber)">100 %</text>
+     <text x="236" y="96">10 %</text><text x="236" y="144">10 %</text><text x="236" y="192">10 %</text><text x="208" y="240">5 %</text><text x="184" y="284">0 %</text>
+    </g>
+   </svg>
+   <figcaption class="msh-figcap">Типовые значения вклада; на конкретной акции цифры прописаны в её правилах и могут отличаться. Те же числа — в таблице.</figcaption>
+   <div class="msh-tw">
+    <table>
+     <caption>Оборот для закрытия вейджера ×35 на бонус 3000 ₽ (расчётный пример)</caption>
+     <thead><tr><th>Формат</th><th class="num">Вклад</th><th class="num">Нужный оборот</th></tr></thead>
+     <tbody>
+      <tr><td>Слоты</td><td class="num">100 %</td><td class="num">105 000 ₽</td></tr>
+      <tr><td>Live-игры</td><td class="num">10 %</td><td class="num">1 050 000 ₽</td></tr>
+      <tr><td>Рулетка</td><td class="num">10 %</td><td class="num">1 050 000 ₽</td></tr>
+      <tr><td>Видеопокер</td><td class="num">10 %</td><td class="num">1 050 000 ₽</td></tr>
+      <tr><td>Блэкджек</td><td class="num">5 %</td><td class="num">2 100 000 ₽</td></tr>
+      <tr><td>Настольные</td><td class="num">0 %</td><td class="num">не засчитывается</td></tr>
+     </tbody>
+    </table>
+   </div>
+  </figure>
+  <details class="msh-det"><summary>Почему для отыгрыша бонуса слот выгоднее блэкджека?</summary><div class="msh-body">Правило вклада засчитывает ставки в слотах в счёт вейджера обычно на 100 %, а в настольных форматах — на 5–10 % или на ноль. При вейджере ×35 бонус в 3000 ₽ закрывается оборотом 105 000 ₽ в слотах и более чем 2 000 000 ₽ в блэкджеке, поэтому формально более честная по отдаче настолка оказывается для отыгрыша проигрышным выбором.</div></details>
+ </div>
+</section>
+
+<section class="msh-sec" id="r-buy">
+ <div class="msh-wrap msh-cap">
+  <p class="msh-kicker"><span class="msh-idx">06</span>покупка входа</p>
+  <h2>Бай-бонус и его влияние на отдачу: что меняет покупка входа в условиях игры</h2>
+  <p>Бай-бонус (feature buy) — функция, которая за фиксированную цену сразу запускает бонусный раунд, минуя ожидание. Цена указывается в кратных ставке: типично ×80–×100, у отдельных релизов ниже или выше. Это не отдельный режим, а правило доступа к бонусной части математики, и у него есть два последствия для разбора: своя версия отдачи и резкий рост дисперсии.</p>
+  <p>Версия RTP при покупке почти всегда отличается от базовой. Иногда она чуть выше (студия компенсирует фиксированную цену входа), иногда ниже; разница — доли процента, и указана она в правилах релиза отдельной строкой. Куда сильнее меняется дисперсия: вы платите сразу 80–100 ставок ради одного раунда, поэтому разброс результата становится экстремальным — либо крупный возврат, либо почти ноль, без промежуточных исходов. Для банкролла это означает, что несколько неудачных покупок подряд способны обнулить запас за минуты.</p>
+  <p>Главное условие, которое прячут в мелком шрифте акций: на отыгрыше бонусных средств функцию покупки часто запрещают правилами, а иногда её использование аннулирует бонус целиком. Читать бай-бонус нужно в паре с условиями конкретного предложения. Под цель он полезен ровно охотнику за заносом, которому не хочется ждать бонусный раунд естественным путём; для долгой сессии, короткого захода и тем более для отыгрыша он чаще вреден или прямо запрещён.</p>
+  <div class="msh-tw">
+   <table>
+    <caption>Базовая игра против покупки входа, профиль «А» (расчётный пример)</caption>
+    <thead><tr><th>Параметр</th><th>Обычная ставка</th><th>Бай-бонус</th></tr></thead>
+    <tbody>
+     <tr><td>Версия RTP</td><td>94,5 %</td><td>94,8 %</td></tr>
+     <tr><td>Цена входа</td><td>—</td><td>×80 ставки</td></tr>
+     <tr><td>Дисперсия</td><td>высокая</td><td>экстремальная</td></tr>
+     <tr><td>В отыгрыше бонуса</td><td>разрешена</td><td>обычно запрещена</td></tr>
+    </tbody>
+   </table>
+  </div>
+  <details class="msh-det"><summary>Бай-бонус повышает отдачу?</summary><div class="msh-body">Покупка входа в бонус обычно идёт со своей версией RTP, которая бывает и выше, и ниже базовой на доли процента, и резко повышает дисперсию: вы платите 70–100 ставок сразу ради одного раунда. На отыгрыше бонусных средств функцию часто запрещают правилами, поэтому её влияние на отдачу зависит и от математики кнопки, и от условий конкретной акции.</div></details>
+ </div>
+</section>
+
+<section class="msh-sec" id="r-mech">
+ <div class="msh-wrap msh-cap">
+  <p class="msh-kicker"><span class="msh-idx">07</span>правило выплат</p>
+  <h2>Механика как правило выплат: линии, Ways, кластеры и удержание под разную цель</h2>
+  <p>Механика — это способ, которым релиз определяет призовую комбинацию, и она напрямую связана с волатильностью и частотой попаданий. Классические линии выплат считают совпадения по фиксированным дорожкам: предсказуемо, обычно умеренная дисперсия. Схема Ways (например 243 или 1024 способа) засчитывает любые соседние совпадения слева направо, что повышает частоту мелких попаданий. Megaways добавляет переменное число символов на барабане, доводя число способов до сотен тысяч и заметно поднимая дисперсию.</p>
+  <p>Выплаты в любом месте и cluster pays засчитывают группы одинаковых символов без привязки к линиям, часто с каскадом: сработавшие символы исчезают, а новые падают сверху, позволяя нескольким выплатам в одном спине. Hold and Win (она же Respin, Link, Lightning) удерживает символы-призы и перезапускает барабаны ради их накопления — механика с редкими, но потенциально крупными исходами и собственным мини-потолком. Каждая из них — не косметика, а правило, которое меняет распределение выплат.</p>
+  <p>Под цель механика читается через риск. Для короткой сессии и живого экрана подходят Ways и cluster pays с каскадами: частые срабатывания держат вовлечённость. Для охоты за заносом ближе Megaways и Hold and Win с их верхними исходами и высокой дисперсией. Для долгого вечера на малом банке безопаснее классические линии с умеренным разбросом. Выбор механики — это, по сути, выбор формы риска, и именно за это она стоит в разборе рядом с волатильностью, а не отдельно.</p>
+  <div class="msh-note">Одна механика не «лучше» другой в вакууме. Megaways сильна охотнику за верхним исходом и разорительна тому, кто хотел растянуть банк; классическая линия — наоборот. Смысл появляется только вместе с целью.</div>
+ </div>
+</section>
+
+<section class="msh-sec" id="r-flip">
+ <div class="msh-wrap msh-cap">
+  <p class="msh-kicker"><span class="msh-idx">08</span>синтез</p>
+  <h2>Когда оценка переворачивается: профиль «А» под четыре разные цели</h2>
+  <p>Соберём разбор на одной карточке. Профиль «А» из расчётного примера: базовый RTP 96,2 %, версия оператора 94,5 %, высокая волатильность, частота попаданий 24 %, max win ×5000, вклад в вейджер 100 %, бай-бонус ×80. Одни и те же семь чисел дают четыре разных вердикта — в зависимости от того, зачем вы садитесь играть.</p>
+  <p>Охотнику за крупным заносом профиль подходит почти идеально: высокая дисперсия и потолок ×5000 дают шанс на верхний исход, а бай-бонус сокращает ожидание бонусного раунда. Для отыгрыша бонуса профиль средний: стопроцентный вклад удобен, но версия 94,5 % и высокая дисперсия повышают риск потерять бонусные средства до закрытия вейджера, а покупка входа там, скорее всего, запрещена. Для короткого захода ради эмоций профиль спорный: частота 24 % даёт регулярную обратную связь, но высокая волатильность способна оборвать заход быстрее, чем хотелось.</p>
+  <p>А для долгого вечера на небольшом банке тот же профиль — слабый выбор: при высокой дисперсии банк в 200 ставок уходит в пустых сериях, и до отдачи 94,5 % сессия попросту не доживает. Вывод разбора один: карточка не делится на «подходит» и «не подходит» сама по себе. Сначала цель — потом чтение условий под неё. Любой список, который этого шага не делает и подаёт единый рейтинг «на всех», продаёт удобную иллюзию вместо разбора.</p>
+  <div class="msh-tw">
+   <table>
+    <caption>Один профиль «А», четыре вердикта (расчётный пример)</caption>
+    <thead><tr><th>Цель</th><th>Решающие условия</th><th>Вердикт</th></tr></thead>
+    <tbody>
+     <tr><td>Охота за заносом</td><td>дисперсия, max win ×5000, бай-бонус</td><td style="color:var(--good)">подходит</td></tr>
+     <tr><td>Отыгрыш бонуса</td><td>вклад 100 %, версия 94,5 %, запрет покупки</td><td style="color:var(--warn)">средне</td></tr>
+     <tr><td>Короткая сессия</td><td>частота 24 %, высокая волатильность</td><td style="color:var(--warn)">спорно</td></tr>
+     <tr><td>Долгий вечер, малый банк</td><td>высокая дисперсия против банка в 200 ставок</td><td style="color:var(--bad)">слабо</td></tr>
+    </tbody>
+   </table>
+  </div>
+ </div>
+</section>
+
+<section class="msh-sec" id="r-faq">
+ <div class="msh-wrap msh-cap">
+  <p class="msh-kicker">после разбора</p>
+  <h2>Вопросы о правилах и метриках, которые остаются после разбора</h2>
+  <details class="msh-det"><summary>Что значит, что RTP у одной игры бывает разным?</summary><div class="msh-body">Многие студии выпускают релиз в нескольких версиях отдачи — например 96,5 %, 95,5 % и 94,0 %, — а какую включить, решает оператор при подключении. Фактическую версию указывают в правилах или в информационном окне самого автомата, и именно её, а не рекламное число, стоит проверять перед ставкой.</div></details>
+  <details class="msh-det"><summary>Высокий RTP делает игру сильнейшей?</summary><div class="msh-body">RTP описывает долю ставок, возвращаемую в среднем на дистанции в миллионы спинов, и ничего не говорит про один вечер. При одинаковом RTP волатильность и частота попаданий дают совершенно разный разброс результата, поэтому подходящий под конкретную цель релиз определяет связка метрик, а не один процент.</div></details>
+  <details class="msh-det"><summary>Почему для отыгрыша бонуса слот выгоднее блэкджека?</summary><div class="msh-body">Правило вклада засчитывает ставки в слотах в счёт вейджера обычно на 100 %, а в настольных форматах — на 5–10 % или на ноль. При вейджере ×35 бонус в 3000 ₽ закрывается оборотом 105 000 ₽ в слотах и более чем 2 000 000 ₽ в блэкджеке, поэтому формально более честная по отдаче настолка оказывается для отыгрыша проигрышным выбором.</div></details>
+  <details class="msh-det"><summary>Что такое max win и когда он мешает?</summary><div class="msh-body">Max win — это потолок выплаты за один раунд или сессию, записанный в правилах игры, чаще в кратных ставке: от нескольких сотен до десятков тысяч. Для спокойной игры он почти не важен, но при охоте за крупным заносом редкий максимальный результат упирается в этот лимит, и всё сверху не выплачивается.</div></details>
+  <details class="msh-det"><summary>Бай-бонус повышает отдачу?</summary><div class="msh-body">Покупка входа в бонус обычно идёт со своей версией RTP, которая бывает и выше, и ниже базовой на доли процента, и резко повышает дисперсию: вы платите 70–100 ставок сразу ради одного раунда. На отыгрыше бонусных средств функцию часто запрещают правилами, поэтому её влияние на отдачу зависит и от математики кнопки, и от условий конкретной акции.</div></details>
+  <details class="msh-det"><summary>Можно ли проверить метрики игры заранее?</summary><div class="msh-body">Базовый RTP, диапазон ставок и max win указывают в информационном окне автомата и в его правилах; версию отдачи и наличие бай-бонуса — там же. Демо-режим показывает механику без денег, а сертификат независимой лаборатории вроде GLI, eCOGRA или iTech Labs подтверждает, что генератор случайных чисел проверен, хотя саму версию RTP он не раскрывает.</div></details>
+ </div>
+</section>
+
+<section class="msh-sec" id="r-channel">
+ <div class="msh-wrap msh-cap">
+  <p class="msh-kicker">обновления</p>
+  <h2>Как обновляется разбор условий и где выходят правки</h2>
+  <p>Правила площадок и математика релизов меняются: студии выпускают новые версии RTP, операторы переключают конфигурации, условия вклада в вейджер переписывают под новые акции. Разбор на этой странице фиксирует дату (1 октября 2026) и опирается на общие, проверяемые принципы, а не на цифры конкретных тайтлов, поэтому устаревает он медленнее подборок «топ-10 на сегодня». Когда меняется что-то в самих правилах — например типовой вклад формата или подход к бай-бонусу на отыгрыше, — правка вносится сюда с новой датой.</p>
+  <p>Короткие заметки о свежих релизах и о том, как читать их условия, редакция «Между строк» публикует в телеграм-канале. Это разбор параметров, а не призыв играть и не рейтинг заведений.</p>
+  <div class="msh-channel">
+   <div>
+    <h3 style="margin:.1em 0 .3em">Канал «Между строк»</h3>
+    <p style="margin:0;color:var(--ink-2);font-size:var(--fs-ui)">Разбор условий новых релизов: версии RTP, вклад в вейджер, цена бай-бонуса. Без партнёрских ссылок.</p>
+   </div>
+   <a class="msh-cta" href="https://t.me/top_casino_2027" rel="noopener" target="_blank"><span aria-hidden="true">§</span> Открыть канал</a>
+  </div>
+  <p class="msh-care" style="margin-top:22px">Азартные игры — не способ заработка и несут риск потери средств. Материал носит справочный характер, адресован совершеннолетним (18+) и не содержит рекламы конкретных операторов. Онлайн-казино в России ограничены по 244-ФЗ; раздел о лицензировании касается общих принципов, а не обхода блокировок. Признаки игровой зависимости — повод обратиться за помощью.</p>
+ </div>
+</section>
+</main>
+
+<footer class="msh-foot">
+ <div class="msh-wrap">
+  <div class="msh-footgrid">
+   <div>
+    <h4><span class="msh-sigil" style="width:24px;height:24px;font-size:16px;vertical-align:middle;margin-right:6px">§</span>Между строк</h4>
+    <p>Независимый разбор условий и математики игровых релизов. Все числовые профили на странице — расчётные примеры, а не измерения конкретных тайтлов. Рейтингов брендов и партнёрских ссылок нет.</p>
+   </div>
+   <div>
+    <h4>Разделы</h4>
+    <p><a href="#r-rtp">RTP и версии</a><br><a href="#r-vol">Волатильность</a><br><a href="#r-maxwin">Max win</a><br><a href="#r-wager">Вклад в вейджер</a><br><a href="#r-buy">Бай-бонус</a></p>
+   </div>
+   <div>
+    <h4>Проверка игры</h4>
+    <p><a href="https://gaminglabs.com" rel="nofollow noopener" target="_blank">GLI (лаборатория)</a><br><a href="https://ecogra.org" rel="nofollow noopener" target="_blank">eCOGRA</a><br><a href="https://itechlabs.com" rel="nofollow noopener" target="_blank">iTech Labs</a></p>
+   </div>
+  </div>
+  <p class="msh-care">© 2026 Редакция «Между строк» · luchshie-igry266.github.io · обновлено 1 октября 2026. Информация справочная, 18+.</p>
+ </div>
+</footer>
+
+<script>
+(function(){
+ var top=document.getElementById('top');
+ var onScroll=function(){top.classList.toggle('is-stuck',window.scrollY>8)};
+ onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+ var links=[].slice.call(document.querySelectorAll('.msh-nav a'));
+ var map={};links.forEach(function(a){var id=a.getAttribute('href').slice(1);var s=document.getElementById(id);if(s)map[id]=a;});
+ if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(l){l.classList.remove('is-here')});var a=map[e.target.id];if(a)a.classList.add('is-here');}});},{rootMargin:'-40% 0px -55% 0px'});
+  Object.keys(map).forEach(function(id){io.observe(document.getElementById(id))});
+ }
+ var btn=document.getElementById('themebtn');
+ if(btn){btn.addEventListener('click',function(){
+  var cur=document.documentElement.getAttribute('data-theme');
+  var dark=window.matchMedia&&window.matchMedia('(prefers-color-scheme:dark)').matches;
+  var next=cur?(cur==='dark'?'light':'dark'):(dark?'light':'dark');
+  document.documentElement.setAttribute('data-theme',next);
+ });}
+})();
+</script>
+</body>
+</html>
